@@ -6,12 +6,12 @@ import com.test.voating.model.VoteRoom;
 
 public interface VoteService {
 
-	public VoteRoom findRoomById(int id);
+	public VoteRoom findById(int id);
 
 	public void saveVoteRoom(VoteRoom room);
 
 	public void updateVoteRoom(VoteRoom room);
 	
-	public List<VoteRoom> getVoteRooms();
+	public List<VoteRoom> findAll();
 
 }

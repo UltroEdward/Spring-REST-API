@@ -2,15 +2,17 @@ package com.test.voating.dao;
 
 import java.util.List;
 
+import org.springframework.data.repository.Repository;
+
 import com.test.voating.model.VoteRoom;
 
-public interface VoteRoomDAO {
+public interface VoteRoomDAO extends Repository<VoteRoom,Integer> {
 
-	public VoteRoom findRoomById(int id);
+	public VoteRoom findById(int id);
 
-	void saveVoteRoom(VoteRoom room);
+	//void saveVoteRoom(VoteRoom room);
 
-	void updateVoteRoom(VoteRoom room);
+	//void updateVoteRoom(VoteRoom room);
 	
-	public List<VoteRoom> getVoteRooms();
+	public List<VoteRoom> findAll();
 }

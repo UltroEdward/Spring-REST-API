@@ -5,18 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.test.voating.dao.VoteRoomDAOImpl;
+import com.test.voating.dao.VoteRoomDAO;
 import com.test.voating.model.VoteRoom;
 
 @Component
 public class VoteServiceImpl implements VoteService {
 
 	@Autowired
-	private VoteRoomDAOImpl voteDao;
+	private VoteRoomDAO voteDao;
 
-	public VoteRoom findRoomById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public VoteRoom findById(int id) {
+		return voteDao.findById(id);
 	}
 
 	public void saveVoteRoom(VoteRoom room) {
@@ -29,7 +28,7 @@ public class VoteServiceImpl implements VoteService {
 
 	}
 
-	public List<VoteRoom> getVoteRooms() {
-		return voteDao.getVoteRooms();
+	public List<VoteRoom> findAll() {
+		return voteDao.findAll();
 	}
 }
