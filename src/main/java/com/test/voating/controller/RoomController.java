@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.voating.model.VoteRoom;
-import com.test.voating.service.VoteService;
+import com.test.voating.service.VoteRoomService;
 
 @RestController
 @RequestMapping(value = "/rooms")
 public class RoomController {
 
 	@Autowired
-	private VoteService voteService;
+	private VoteRoomService voteService;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public List<VoteRoom> getRooms() {

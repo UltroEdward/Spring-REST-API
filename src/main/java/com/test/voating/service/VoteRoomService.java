@@ -4,14 +4,14 @@ import java.util.List;
 
 import com.test.voating.model.VoteRoom;
 
-public interface VoteService {
+public interface VoteRoomService {
 
 	public VoteRoom findById(int id);
 
-	public void saveVoteRoom(VoteRoom room);
+	public VoteRoom addVoteRoom(VoteRoom room);
 
-	public void updateVoteRoom(VoteRoom room);
-	
+	public VoteRoom updateVoteRoom(VoteRoom room);
+
 	public List<VoteRoom> findAll();
 
 }

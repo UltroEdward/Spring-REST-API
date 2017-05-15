@@ -21,6 +21,10 @@ public class VoteRoom {
 
 	@Column(name = "IS_OPENED", nullable = false)
 	private String isOpened;
+	
+	@Column(name = "QUESTION_ID", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Question question;
 
 	public int getId() {
 		return id;
