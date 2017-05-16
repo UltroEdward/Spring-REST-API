@@ -4,9 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.test.voating.entity.VoteRoom;
 
-public interface VoteRoomDAO extends JpaRepository<VoteRoom, Integer> {
-
-	//public VoteRoom findById(int id);
-
+public interface VoteDAO extends JpaRepository<VoteRoom, Integer> {
 
 }

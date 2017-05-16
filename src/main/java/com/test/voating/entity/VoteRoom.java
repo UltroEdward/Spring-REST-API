@@ -1,4 +1,4 @@
-package com.test.voating.model;
+package com.test.voating.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,19 +8,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "VOTE_ROOMS")
+@Table(name = "VOTE_ROOM")
 public class VoteRoom {
 
 	@Id
-	@Column(name = "ID", nullable = false)
+	@Column(name = "ID", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private int id;
 
 	@Column(name = "NAME", nullable = false)
 	private String name;
 
 	@Column(name = "IS_OPENED", nullable = false)
-	private String isOpened;
+	private boolean isOpened;
+
+	@Column(name = "ID_QUESTION", nullable = false)
+	private int idQuestion;
 
 	public int getId() {
 		return id;
@@ -38,12 +42,20 @@ public class VoteRoom {
 		this.name = name;
 	}
 
-	public String isOpened() {
+	public boolean getIsOpened() {
 		return isOpened;
 	}
 
-	public void setOpened(String isOpened) {
+	public void setIsOpened(boolean isOpened) {
 		this.isOpened = isOpened;
+	}
+
+	public int getIdQuestion() {
+		return idQuestion;
+	}
+
+	public void setIdQuestion(int idQuestion) {
+		this.idQuestion = idQuestion;
 	}
 
 	@Override
