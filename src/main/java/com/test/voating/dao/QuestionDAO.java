@@ -4,11 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.test.voating.model.Question;
+import com.test.voating.entity.Question;
 
 public interface QuestionDAO extends JpaRepository<Question, Integer> {
 
-	public Question findById(int id);
-
-	public List<Question> findAll();
 }

@@ -1,7 +1,7 @@
 package com.test.voating.service;
 
-import com.test.voating.model.Vote;
-import com.test.voating.model.VoteRoom;
+import com.test.voating.entity.Vote;
+import com.test.voating.entity.VoteRoom;
 
 public interface VotingService {
 

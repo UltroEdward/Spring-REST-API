@@ -1,4 +1,4 @@
-package com.test.voating.model;
+package com.test.voating.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,21 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ANSWERS")
-public class Answer {
+@Table(name = "VOTES")
+public class Vote {
 
 	@Id
 	@Column(name = "ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "QUESTION_ID", nullable = false)
-	private int questionId;
+	@Column(name = "ROOM_ID", nullable = false)
+	private int roomId;
 
-	@Column(name = "ANSWER", nullable = false)
-	private int answer;
-	
-	@Column(name = "USER", nullable = false)
-	private String name;
-
+	@Column(name = "ANSWER_ID", nullable = false)
+	private int answerId;
 }

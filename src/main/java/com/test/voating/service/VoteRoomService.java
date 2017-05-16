@@ -2,7 +2,7 @@ package com.test.voating.service;
 
 import java.util.List;
 
-import com.test.voating.model.VoteRoom;
+import com.test.voating.entity.VoteRoom;
 
 public interface VoteRoomService {
 

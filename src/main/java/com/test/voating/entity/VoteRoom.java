@@ -1,7 +1,6 @@
-package com.test.voating.model;
+package com.test.voating.entity;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +21,7 @@ public class VoteRoom {
 	private String name;
 
 	@Column(name = "IS_OPENED", nullable = false)
-	private String isOpened;
+	private boolean isOpened;
 
 	@Column(name = "ID_QUESTION", nullable = false)
 	private int idQuestion;
@@ -43,11 +42,11 @@ public class VoteRoom {
 		this.name = name;
 	}
 
-	public String getIsOpened() {
+	public boolean getIsOpened() {
 		return isOpened;
 	}
 
-	public void setIsOpened(String isOpened) {
+	public void setIsOpened(boolean isOpened) {
 		this.isOpened = isOpened;
 	}
 

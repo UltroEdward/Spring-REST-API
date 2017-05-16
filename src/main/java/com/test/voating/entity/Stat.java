@@ -1,4 +1,4 @@
-package com.test.voating.model;
+package com.test.voating.entity;
 
 import java.util.List;
 

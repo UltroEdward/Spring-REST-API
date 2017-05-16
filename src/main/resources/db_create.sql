@@ -13,7 +13,7 @@ CREATE TABLE `QUESTIONS` (
 CREATE TABLE `VOTE_ROOM` (
 	`ID` int(10) NOT NULL auto_increment,
 	`NAME` varchar(100) NOT NULL,
-	`IS_OPENED` varchar (1) NOT NULL,
+	`IS_OPENED` BOOLEAN NOT NULL DEFAULT 0,
 	`ID_QUESTION` int(10) NOT NULL,
     
 	 PRIMARY KEY (`ID`),
@@ -45,8 +45,9 @@ CREATE TABLE `VOTE` (
 
 -- ******************** Seed test data *******************
 
-INSERT INTO `vote`.`questions` (`ID`, `QUESTION`) VALUES ('1', 'How old are you?');
-INSERT INTO `vote`.`questions` (`ID`, `QUESTION`) VALUES ('2', 'Are you married?');
+INSERT INTO `vote`.`questions` (`QUESTION`) VALUES ('How old are you?');
+INSERT INTO `vote`.`questions` (`QUESTION`) VALUES ('Are you married?');
+INSERT INTO `vote`.`questions` (`QUESTION`) VALUES ('Why so serious?');
 
 INSERT INTO `vote`.`vote_room` (`ID`, `NAME`, `IS_OPENED`, `ID_QUESTION`) VALUES ('1', 'Age vote', '1', '1');
 INSERT INTO `vote`.`vote_room` (`ID`, `NAME`, `IS_OPENED`, `ID_QUESTION`) VALUES ('2', 'Marital voting', '1', '2');
