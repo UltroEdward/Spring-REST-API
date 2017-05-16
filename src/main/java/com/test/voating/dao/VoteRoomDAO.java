@@ -10,7 +10,5 @@ public interface VoteRoomDAO extends JpaRepository<VoteRoom, Integer> {
 
 	public VoteRoom findById(int id);
 
-
-
 	public List<VoteRoom> findAll();
 }

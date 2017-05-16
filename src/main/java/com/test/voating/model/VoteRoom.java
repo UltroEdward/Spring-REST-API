@@ -1,6 +1,7 @@
 package com.test.voating.model;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,12 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "VOTE_ROOMS")
+@Table(name = "VOTE_ROOM")
 public class VoteRoom {
 
 	@Id
-	@Column(name = "ID", nullable = false)
+	@Column(name = "ID", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private int id;
 
 	@Column(name = "NAME", nullable = false)
@@ -21,10 +23,9 @@ public class VoteRoom {
 
 	@Column(name = "IS_OPENED", nullable = false)
 	private String isOpened;
-	
-	@Column(name = "QUESTION_ID", nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Question question;
+
+	@Column(name = "ID_QUESTION", nullable = false)
+	private int idQuestion;
 
 	public int getId() {
 		return id;
@@ -42,12 +43,20 @@ public class VoteRoom {
 		this.name = name;
 	}
 
-	public String isOpened() {
+	public String getIsOpened() {
 		return isOpened;
 	}
 
-	public void setOpened(String isOpened) {
+	public void setIsOpened(String isOpened) {
 		this.isOpened = isOpened;
+	}
+
+	public int getIdQuestion() {
+		return idQuestion;
+	}
+
+	public void setIdQuestion(int idQuestion) {
+		this.idQuestion = idQuestion;
 	}
 
 	@Override

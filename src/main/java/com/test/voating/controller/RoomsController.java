@@ -13,12 +13,12 @@ import com.test.voating.service.VoteRoomService;
 
 @RestController
 @RequestMapping(value = "/rooms")
-public class RoomController {
+public class RoomsController {
 
 	@Autowired
 	private VoteRoomService voteService;
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping( method = RequestMethod.GET)
 	public List<VoteRoom> getRooms() {
 		List<VoteRoom> userDetails = voteService.findAll();
 		return userDetails;
@@ -27,6 +27,12 @@ public class RoomController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public VoteRoom getRoom(@PathVariable int id) {
 		return voteService.findById(id);
+	}
+	
+	@RequestMapping( method = RequestMethod.POST)
+	public VoteRoom addRoom(VoteRoom room) {
+		voteService.addVoteRoom(room);
+		return room;
 	}
 
 }
