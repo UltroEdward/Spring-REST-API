@@ -6,7 +6,4 @@ import com.test.voating.entity.VoteRoom;
 
 public interface VoteRoomDAO extends JpaRepository<VoteRoom, Integer> {
 
-	//public VoteRoom findById(int id);
-
-
 }
