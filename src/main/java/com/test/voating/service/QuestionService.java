@@ -2,7 +2,7 @@ package com.test.voating.service;
 
 import java.util.List;
 
-import com.test.voating.entity.Question;
+import com.test.voating.models.entity.Question;
 
 public interface QuestionService {
 

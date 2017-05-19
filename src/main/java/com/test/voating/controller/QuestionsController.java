@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.test.voating.entity.Question;
+import com.test.voating.models.entity.Question;
 import com.test.voating.service.QuestionService;
 
 @RestController

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 import com.test.voating.dao.AnswerDAO;
 import com.test.voating.dao.QuestionDAO;
-import com.test.voating.entity.Answer;
-import com.test.voating.entity.Question;
+import com.test.voating.models.entity.Answer;
+import com.test.voating.models.entity.Question;
 import com.test.voating.service.AnswerService;
 
 @Component

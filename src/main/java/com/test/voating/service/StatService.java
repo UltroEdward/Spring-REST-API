@@ -1,6 +1,6 @@
 package com.test.voating.service;
 
-import com.test.voating.entity.Stat;
+import com.test.voating.models.Stat;
 
 public interface StatService {
 

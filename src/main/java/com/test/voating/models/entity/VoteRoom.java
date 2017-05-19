@@ -1,4 +1,4 @@
-package com.test.voating.entity;
+package com.test.voating.models.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,6 +25,9 @@ public class VoteRoom {
 
 	@Column(name = "ID_QUESTION", nullable = false)
 	private int idQuestion;
+	
+	@Column(name = "VOTING_URL", nullable = false)
+	private String votingString;
 
 	public int getId() {
 		return id;
@@ -42,20 +45,24 @@ public class VoteRoom {
 		this.name = name;
 	}
 
-	public boolean getIsOpened() {
-		return isOpened;
-	}
-
-	public void setIsOpened(boolean isOpened) {
-		this.isOpened = isOpened;
-	}
-
 	public int getIdQuestion() {
 		return idQuestion;
 	}
 
 	public void setIdQuestion(int idQuestion) {
 		this.idQuestion = idQuestion;
+	}
+	
+	public String getVotingString() {
+		return votingString;
+	}
+
+	public void setVotingString(String votingString) {
+		this.votingString = votingString;
+	}
+
+	public void setOpened(boolean isOpened) {
+		this.isOpened = isOpened;
 	}
 
 	@Override

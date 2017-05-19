@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.test.voating.entity.VoteRoom;
+import com.test.voating.models.entity.VoteRoom;
 import com.test.voating.service.VoteRoomService;
 
 @RestController
@@ -35,8 +35,10 @@ public class RoomsController extends AbstarctController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<VoteRoom> addRoom(VoteRoom room) {
 		VoteRoom r = voteService.addVoteRoom(room);
+		r.setVotingString(String.format("/%s/", args));
 		return getResponse(r, HttpStatus.BAD_REQUEST);
 	}
+	
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<VoteRoom> updateRoomStatus(@PathVariable int id, boolean isOpened) {
@@ -44,7 +46,7 @@ public class RoomsController extends AbstarctController {
 		if (room == null) {
 			return null;
 		}
-		room.setIsOpened(isOpened);
+		room.setOpened(isOpened);
 		VoteRoom r = voteService.updateVoteRoom(room);
 		return getResponse(r, HttpStatus.BAD_REQUEST);
 	}

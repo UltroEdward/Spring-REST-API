@@ -1,4 +1,4 @@
-package com.test.voating.entity;
+package com.test.voating.models.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,4 +21,30 @@ public class Vote {
 
 	@Column(name = "ANSWER_ID", nullable = false)
 	private int answerId;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getRoomId() {
+		return roomId;
+	}
+
+	public void setRoomId(int roomId) {
+		this.roomId = roomId;
+	}
+
+	public int getAnswerId() {
+		return answerId;
+	}
+
+	public void setAnswerId(int answerId) {
+		this.answerId = answerId;
+	}
+	
+	
 }

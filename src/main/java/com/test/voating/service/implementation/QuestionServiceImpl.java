@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.test.voating.dao.QuestionDAO;
-import com.test.voating.entity.Question;
+import com.test.voating.models.entity.Question;
 import com.test.voating.service.QuestionService;
 
 @Component

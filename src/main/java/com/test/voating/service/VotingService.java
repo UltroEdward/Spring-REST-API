@@ -1,9 +1,16 @@
 package com.test.voating.service;
 
-import com.test.voating.entity.Vote;
-import com.test.voating.entity.VoteRoom;
+import java.util.List;
+
+import com.test.voating.models.entity.Vote;
 
 public interface VotingService {
 
-	public VoteRoom makeVote(Vote vote);
+	public Vote makeVote(Vote vote);
+	
+	public List<Vote> findAll();
+	
+	public Vote findById(int id);
+	
+	public List<Vote> findByAnswerId(int id);
 }
