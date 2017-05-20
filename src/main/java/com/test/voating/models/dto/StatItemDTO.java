@@ -1,6 +1,6 @@
-package com.test.voating.models;
+package com.test.voating.models.dto;
 
-public class StatItem {
+public class StatItemDTO {
 	
 	private String answer;
 	private int count;

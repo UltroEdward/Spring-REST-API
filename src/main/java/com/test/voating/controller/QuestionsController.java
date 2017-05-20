@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.test.voating.exceptions.VoteIllegalStateException;
+import com.test.voating.exceptions.VoteItemCreationException;
+import com.test.voating.exceptions.VoteItemNotFoundException;
 import com.test.voating.models.entity.Question;
 import com.test.voating.service.QuestionService;
 
@@ -17,25 +20,25 @@ import com.test.voating.service.QuestionService;
 @RequestMapping(value = "/questions")
 public class QuestionsController extends AbstarctController {
 
-	@Autowired
-	private QuestionService qService;
+    @Autowired
+    private QuestionService qService;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<Question>> getQuestions() {
-		List<Question> questions = qService.findAll();
-		return new ResponseEntity<>(questions, HttpStatus.OK);
-	}
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<Question>> getQuestions() throws VoteItemNotFoundException {
+	List<Question> questions = qService.findAll();
+	return getResponse(questions);
+    }
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Question> getQuestion(@PathVariable int id) {
-		Question q = qService.findById(id);
-		return getResponse(q, HttpStatus.NOT_FOUND);
-	}
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Question> getQuestion(@PathVariable int id) throws VoteItemNotFoundException {
+	Question question = qService.findById(id);
+	return getResponse(question);
+    }
 
-	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Question> addQuestion(Question question) {
-		Question q = qService.addQuestion(question);
-		return getResponse(q,HttpStatus.BAD_REQUEST);
-	}
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Question> addQuestion(Question questionToSave) throws VoteItemCreationException, VoteIllegalStateException {
+	Question question = qService.addQuestion(questionToSave);
+	return getResponse(question, HttpStatus.CREATED);
+    }
 
 }

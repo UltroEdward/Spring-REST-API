@@ -5,66 +5,88 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.test.voating.dao.QuestionDAO;
 import com.test.voating.dao.VoteRoomDAO;
+import com.test.voating.exceptions.VoteBasicException;
+import com.test.voating.exceptions.VoteIllegalStateException;
+import com.test.voating.exceptions.VoteItemCreationException;
+import com.test.voating.exceptions.VoteItemNotFoundException;
 import com.test.voating.models.entity.VoteRoom;
+import com.test.voating.service.QuestionService;
 import com.test.voating.service.VoteRoomService;
 
 @Component
 public class VoteRoomServiceImpl implements VoteRoomService {
 
-	@Autowired
-	private VoteRoomDAO voteRoomDao;
-	@Autowired
-	private QuestionDAO questionDao;
+    @Autowired
+    private VoteRoomDAO voteRoomDao;
+    @Autowired
+    private QuestionService questionService;
 
-	public VoteRoom findById(int id) {
-		return voteRoomDao.findOne(id);
+    public VoteRoom findById(int id) throws VoteItemNotFoundException {
+	VoteRoom voteRoom = voteRoomDao.findOne(id);
+	try {
+	    voteRoom.getId();
+	} catch (Exception ex) {
+	    throw new VoteItemNotFoundException("Room id is incorrect or not exist");
+	}
+	return voteRoom;
+    }
+
+    public VoteRoom addVoteRoom(VoteRoom roomToSave) throws VoteIllegalStateException, VoteItemCreationException, VoteItemNotFoundException {
+	roomToSave.setId(0); // let db generate id
+	roomToSave = validateVoteRoom(roomToSave);
+	roomToSave.setOpened(false); // closed by default
+
+	VoteRoom room = null;
+	try {
+	    room = voteRoomDao.saveAndFlush(roomToSave);
+	} catch (Exception ex) {
+	    throw new VoteItemCreationException("Can't add Room: " + ex.getMessage());
 	}
 
-	public VoteRoom addVoteRoom(VoteRoom room) {
-		room.setId(0); // let db generate id
-		if (questionDao.findOne(room.getIdQuestion()) == null) {
-			return null;
-		}
-		
-		room = validateVoteRoom(room);
-		if (room == null) {
-			return null;
-		}
-		
-		VoteRoom roomSaved = voteRoomDao.saveAndFlush(room);
-		return roomSaved;
+	return room;
+    }
+
+    public VoteRoom updateVoteRoom(VoteRoom roomToSave) throws VoteIllegalStateException, VoteItemCreationException, VoteItemNotFoundException {
+	VoteRoom existingRoom = voteRoomDao.findOne(roomToSave.getId());
+	if (existingRoom == null) {
+	    throw new VoteIllegalStateException("Room can't be updated, as it not presented");
 	}
 
-	public VoteRoom updateVoteRoom(VoteRoom room) {
-		VoteRoom existingRoom = voteRoomDao.findOne(room.getId());
-		if (existingRoom == null) {
-			return null;
-		}
-
-		room = validateVoteRoom(room);
-		if (room == null) {
-			return null;
-		}
-		
-		VoteRoom roomSaved = voteRoomDao.saveAndFlush(room);
-		return roomSaved;
+	roomToSave = validateVoteRoom(roomToSave);
+	try {
+	    existingRoom = voteRoomDao.saveAndFlush(roomToSave);
+	} catch (Exception ex) {
+	    throw new VoteItemCreationException("Can't add Room: " + ex.getMessage());
 	}
 
-	public List<VoteRoom> findAll() {
-		return voteRoomDao.findAll();
+	return existingRoom;
+    }
+
+    public List<VoteRoom> findAll() {
+	return voteRoomDao.findAll();
+    }
+
+    public VoteRoom setStatus(int id, boolean isOpened) throws VoteBasicException {
+
+	VoteRoom roomFromDb = findById(id);
+	roomFromDb.setOpened(isOpened);
+	VoteRoom room = updateVoteRoom(roomFromDb);
+	return room;
+
+    }
+
+    private VoteRoom validateVoteRoom(VoteRoom room) throws VoteIllegalStateException, VoteItemNotFoundException {
+
+	if (room.getName() == null || room.getName().isEmpty()) {
+	    throw new VoteIllegalStateException("Room name is not presented, can't add");
 	}
 
-	private VoteRoom validateVoteRoom(VoteRoom room) {
-		
-		if (questionDao.findOne(room.getIdQuestion()) == null) {
-			return null;
-		}
-
-		if (room.getName() == null || room.getName().isEmpty()) {
-			return null;
-		}
-		return room;
+	if (questionService.findById(room.getIdQuestion()) == null) {
+	    throw new VoteIllegalStateException("Question id is not presented, can't add");
 	}
+
+	return room;
+    }
+
 }

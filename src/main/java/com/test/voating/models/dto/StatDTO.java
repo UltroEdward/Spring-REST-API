@@ -1,11 +1,11 @@
-package com.test.voating.models;
+package com.test.voating.models.dto;
 
 import java.util.List;
 
-public class Stat {
+public class StatDTO {
 
 	private String question;
-	private List<StatItem> items;
+	private List<StatItemDTO> items;
 
 	public String getQuestion() {
 		return question;
@@ -15,11 +15,11 @@ public class Stat {
 		this.question = question;
 	}
 
-	public List<StatItem> getItems() {
+	public List<StatItemDTO> getItems() {
 		return items;
 	}
 
-	public void setItems(List<StatItem> items) {
+	public void setItems(List<StatItemDTO> items) {
 		this.items = items;
 	}
 

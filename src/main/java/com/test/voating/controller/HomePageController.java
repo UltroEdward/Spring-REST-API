@@ -19,9 +19,9 @@ import springfox.documentation.annotations.ApiIgnore;
 @RequestMapping(value = "/")
 public class HomePageController {
 
-	@RequestMapping(method = RequestMethod.GET)
-	@ApiIgnore
-	public void openHomePage(HttpServletResponse response) throws IOException {
-		response.sendRedirect("/swagger-ui.html#");
-	}
+    @RequestMapping(method = RequestMethod.GET)
+    @ApiIgnore
+    public void openHomePage(HttpServletResponse response) throws IOException {
+	response.sendRedirect("/swagger-ui.html#");
+    }
 }

@@ -1,10 +1,11 @@
 package com.test.voating.service;
 
-import com.test.voating.models.Stat;
+import com.test.voating.exceptions.VoteItemNotFoundException;
+import com.test.voating.models.dto.StatDTO;
 
 public interface StatService {
 
-	public Stat getStats(int roomId);
+	public StatDTO getStats(int roomId) throws VoteItemNotFoundException;
 	
 	
 }
