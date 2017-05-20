@@ -1,9 +1,8 @@
 Task:
 
 1. Create app on Java SE 1.8, Spring Boot (REST API)
-
+<br>
 2. Functions:
-
 <br>
 -create vote room
 <br>
@@ -12,14 +11,14 @@ Task:
 -close voting
 <br>
 -show stats
-
+<br>
 3. Install:
 <br>
 -Install MySQL and edit application.properties with URL, username, password. 
 Default is: jdbc:mysql://localhost:3306/VOTE, root, root
 <br>
 -Run db_create.sql with application schema and sample data
-
+<br>
 4. Work flow
 <br>
 By default root page is /swagger-ui.html# with all endpoints
