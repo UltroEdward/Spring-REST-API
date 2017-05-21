@@ -56,5 +56,14 @@ public class Answer {
     public void setUser(String user) {
 	this.user = user;
     }
+    
+    @Override
+    public String toString() {
+	StringBuilder builder = new StringBuilder();
+	builder.append("ANSWER: ");
+	builder.append("id " + id);
+	builder.append(", name " + name);
+	return builder.toString();
+    }
 
 }

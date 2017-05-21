@@ -60,10 +60,10 @@ public class VoteRoom {
     @Override
     public String toString() {
 	StringBuilder builder = new StringBuilder();
-	builder.append("ROOM:");
-	builder.append(" id " + id);
-	builder.append(" name " + name);
-	builder.append(" isOpened " + isOpened);
+	builder.append("ROOM: ");
+	builder.append("id " + id);
+	builder.append(", name " + name);
+	builder.append(", isOpened " + isOpened);
 	return builder.toString();
     }
 

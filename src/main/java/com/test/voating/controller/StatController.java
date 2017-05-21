@@ -16,11 +16,11 @@ import com.test.voating.service.StatService;
 public class StatController extends AbstarctController {
 
     @Autowired
-    private StatService statService;
+    private StatService sService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<StatDTO> getStats(@PathVariable int id) throws VoteItemNotFoundException {
-	StatDTO s = statService.getStats(id);
+	StatDTO s = sService.getStats(id);
 	return getResponse(s);
     }
 }

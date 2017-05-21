@@ -11,30 +11,36 @@ import javax.persistence.Table;
 @Table(name = "QUESTIONS")
 public class Question {
 
-	@Id
-	@Column(name = "ID", nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+    @Id
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	@Column(name = "QUESTION", nullable = false)
-	private String name;
+    @Column(name = "QUESTION", nullable = false)
+    private String name;
 
-	public int getId() {
-		return id;
-	}
+    public int getId() {
+	return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+	this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+	return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+	this.name = name;
+    }
 
-	// private List<Answer> answers;
-
+    @Override
+    public String toString() {
+	StringBuilder builder = new StringBuilder();
+	builder.append("QUESTION: ");
+	builder.append("id " + id);
+	builder.append(", name " + name);
+	return builder.toString();
+    }
 }

@@ -21,35 +21,35 @@ import com.test.voating.service.VotingService;
 public class VoteController extends AbstarctController {
 
     @Autowired
-    private VotingService voteService;
+    private VotingService vService;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Vote> getVotes() {
-	List<Vote> votes = voteService.findAll();
+	List<Vote> votes = vService.findAll();
 	return votes;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Vote> getVote(@PathVariable int id) throws VoteItemNotFoundException {
-	Vote v = voteService.findById(id);
+	Vote v = vService.findById(id);
 	return getResponse(v);
     }
 
     @RequestMapping(value = "/rooms/{roomId}/answers/{id}", method = RequestMethod.GET)
     public ResponseEntity<List<Vote>> getVotesByAnswer(@PathVariable int id, @PathVariable int roomId) throws VoteItemNotFoundException {
-	List<Vote> v = voteService.findByAnswerAndRoomId(id, roomId);
+	List<Vote> v = vService.findByAnswerAndRoomId(id, roomId);
 	return getResponse(v);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Vote> addVote(Vote vote) throws VoteIllegalStateException, VoteItemNotFoundException {
-	Vote v = voteService.makeVote(vote);
+	Vote v = vService.makeVote(vote);
 	return getResponse(v);
     }
 
     @RequestMapping(value = "/rooms/{id}", method = RequestMethod.POST)
     public ResponseEntity<Vote> addVoteByRoom(@PathVariable int id, @RequestBody int answerId ) throws VoteIllegalStateException, VoteItemNotFoundException {
-	Vote v = voteService.addVoteByRoom(id, answerId);
+	Vote v = vService.addVoteByRoom(id, answerId);
 	return getResponse(v, HttpStatus.CREATED);
     }
      

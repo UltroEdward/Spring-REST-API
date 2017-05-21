@@ -2,23 +2,23 @@ package com.test.voating.models.dto;
 
 public class ErrorDataDTO {
 
-	private int errorCode;
-	private String message;
+    private int errorCode;
+    private String message;
 
-	public int getErrorCode() {
-		return errorCode;
-	}
+    public int getErrorCode() {
+	return errorCode;
+    }
 
-	public void setErrorCode(int errorCode) {
-		this.errorCode = errorCode;
-	}
+    public void setErrorCode(int errorCode) {
+	this.errorCode = errorCode;
+    }
 
-	public String getMessage() {
-		return message;
-	}
+    public String getMessage() {
+	return message;
+    }
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+    public void setMessage(String message) {
+	this.message = message;
+    }
 
 }

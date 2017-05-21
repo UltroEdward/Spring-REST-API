@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.test.voating.exceptions.VoteItemNotFoundException;
 import com.test.voating.models.dto.StatDTO;
@@ -18,7 +18,7 @@ import com.test.voating.service.StatService;
 import com.test.voating.service.VoteRoomService;
 import com.test.voating.service.VotingService;
 
-@Component
+@Service
 public class StatServiceImpl implements StatService {
 
     @Autowired

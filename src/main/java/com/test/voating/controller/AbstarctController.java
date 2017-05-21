@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.test.voating.exceptions.VoteBasicException;
 import com.test.voating.exceptions.VoteIllegalStateException;
 import com.test.voating.exceptions.VoteItemCreationException;
 import com.test.voating.exceptions.VoteItemNotFoundException;
@@ -26,14 +27,15 @@ public abstract class AbstarctController {
 	return getResponse(respBody, HttpStatus.OK);
     }
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(VoteBasicException.class)
     protected ResponseEntity<ErrorDataDTO> exceptionHandler(Exception ex) {
 	ErrorDataDTO error = new ErrorDataDTO();
 	error.setErrorCode(HttpStatus.PRECONDITION_FAILED.value());
 	error.setMessage(ex.getMessage());
-	LOG.error(ex.getMessage());
+	
 	StringWriter sw = new StringWriter();
 	ex.printStackTrace(new PrintWriter(sw));
+	LOG.error(ex.getMessage());
 	LOG.error(sw.toString());
 
 	if (ex instanceof VoteItemNotFoundException) {

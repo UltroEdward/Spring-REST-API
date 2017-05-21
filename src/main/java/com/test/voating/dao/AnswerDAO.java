@@ -10,6 +10,6 @@ import com.test.voating.models.entity.Answer;
 
 public interface AnswerDAO extends JpaRepository<Answer, Integer> {
 
-	@Query("select a from Answer a where a.questionId = :id")
-	List<Answer> selectByQuestionId(@Param("id") int id);
+    @Query("select a from Answer a where a.questionId = :id")
+    List<Answer> selectByQuestionId(@Param("id") int id);
 }

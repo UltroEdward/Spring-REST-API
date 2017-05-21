@@ -46,4 +46,13 @@ public class Vote {
 	this.answerId = answerId;
     }
 
+    @Override
+    public String toString() {
+	StringBuilder builder = new StringBuilder();
+	builder.append("VOTE: ");
+	builder.append("id " + id);
+	builder.append(", room " + roomId);
+	builder.append(", answer " + answerId);
+	return builder.toString();
+    }
 }

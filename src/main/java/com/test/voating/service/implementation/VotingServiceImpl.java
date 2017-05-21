@@ -3,7 +3,7 @@ package com.test.voating.service.implementation;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.test.voating.dao.VoteDAO;
 import com.test.voating.exceptions.VoteIllegalStateException;
@@ -13,7 +13,7 @@ import com.test.voating.service.AnswerService;
 import com.test.voating.service.VoteRoomService;
 import com.test.voating.service.VotingService;
 
-@Component
+@Service
 public class VotingServiceImpl implements VotingService {
 
     @Autowired
