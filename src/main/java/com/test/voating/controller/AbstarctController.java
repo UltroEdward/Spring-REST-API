@@ -14,7 +14,7 @@ import com.test.voating.models.dto.ErrorDataDTO;
 
 public abstract class AbstarctController {
 
-    public static final Logger LOG = LoggerFactory.getLogger(AbstarctController.class);
+    protected static final Logger LOG = LoggerFactory.getLogger(AbstarctController.class);
 
     protected <E> ResponseEntity<E> getResponse(E respBody, HttpStatus status) {
 	return new ResponseEntity<>(respBody, status);
