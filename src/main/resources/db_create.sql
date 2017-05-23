@@ -46,25 +46,25 @@ CREATE TABLE `VOTES` (
 
 -- ******************** Seed test data *******************
 
-INSERT INTO `vote`.`questions` (`QUESTION`) VALUES ('How old are you?');
-INSERT INTO `vote`.`questions` (`QUESTION`) VALUES ('Are you married?');
-INSERT INTO `vote`.`questions` (`QUESTION`) VALUES ('Why so serious?');
+INSERT INTO `vote`.`QUESTIONS` (`QUESTION`) VALUES ('How old are you?');
+INSERT INTO `vote`.`QUESTIONS` (`QUESTION`) VALUES ('Are you married?');
+INSERT INTO `vote`.`QUESTIONS` (`QUESTION`) VALUES ('Why so serious?');
 
-INSERT INTO `vote`.`vote_rooms` (`ID`, `NAME`, `IS_OPENED`, `ID_QUESTION`) VALUES ('1', 'Age vote_1', '0', '1');
-INSERT INTO `vote`.`vote_rooms` (`ID`, `NAME`, `IS_OPENED`, `ID_QUESTION`) VALUES ('2', 'Age vote_2', '0', '1');
-INSERT INTO `vote`.`vote_rooms` (`ID`, `NAME`, `IS_OPENED`, `ID_QUESTION`) VALUES ('3', 'Marital voting', '0', '2');
+INSERT INTO `vote`.`VOTE_ROOMS` (`ID`, `NAME`, `IS_OPENED`, `ID_QUESTION`) VALUES ('1', 'Age vote_1', '0', '1');
+INSERT INTO `vote`.`VOTE_ROOMS` (`ID`, `NAME`, `IS_OPENED`, `ID_QUESTION`) VALUES ('2', 'Age vote_2', '0', '1');
+INSERT INTO `vote`.`VOTE_ROOMS` (`ID`, `NAME`, `IS_OPENED`, `ID_QUESTION`) VALUES ('3', 'Marital voting', '0', '2');
 
-INSERT INTO `vote`.`answers` (`ID`, `ID_QUESTION`, `ANSWER`) VALUES ('1', '1', '>18');
-INSERT INTO `vote`.`answers` (`ID`, `ID_QUESTION`, `ANSWER`) VALUES ('2', '1', '=<18');
-INSERT INTO `vote`.`answers` (`ID`, `ID_QUESTION`, `ANSWER`) VALUES ('3', '2', 'Yes');
-INSERT INTO `vote`.`answers` (`ID`, `ID_QUESTION`, `ANSWER`) VALUES ('4', '2', 'No');
+INSERT INTO `vote`.`ANSWERS` (`ID`, `ID_QUESTION`, `ANSWER`) VALUES ('1', '1', '>18');
+INSERT INTO `vote`.`ANSWERS` (`ID`, `ID_QUESTION`, `ANSWER`) VALUES ('2', '1', '=<18');
+INSERT INTO `vote`.`ANSWERS` (`ID`, `ID_QUESTION`, `ANSWER`) VALUES ('3', '2', 'Yes');
+INSERT INTO `vote`.`ANSWERS` (`ID`, `ID_QUESTION`, `ANSWER`) VALUES ('4', '2', 'No');
 
-INSERT INTO `vote`.`votes` (`ID`, `ID_ROOM`, `ID_ANSWER`) VALUES ('1', '1', '1');
-INSERT INTO `vote`.`votes` (`ID`, `ID_ROOM`, `ID_ANSWER`) VALUES ('2', '1', '1');
-INSERT INTO `vote`.`votes` (`ID`, `ID_ROOM`, `ID_ANSWER`) VALUES ('3', '1', '1');
-INSERT INTO `vote`.`votes` (`ID`, `ID_ROOM`, `ID_ANSWER`) VALUES ('4', '1', '2');
-INSERT INTO `vote`.`votes` (`ID`, `ID_ROOM`, `ID_ANSWER`) VALUES ('5', '2', '2');
-INSERT INTO `vote`.`votes` (`ID`, `ID_ROOM`, `ID_ANSWER`) VALUES ('6', '2', '2');
+INSERT INTO `vote`.`VOTES` (`ID`, `ID_ROOM`, `ID_ANSWER`) VALUES ('1', '1', '1');
+INSERT INTO `vote`.`VOTES` (`ID`, `ID_ROOM`, `ID_ANSWER`) VALUES ('2', '1', '1');
+INSERT INTO `vote`.`VOTES` (`ID`, `ID_ROOM`, `ID_ANSWER`) VALUES ('3', '1', '1');
+INSERT INTO `vote`.`VOTES` (`ID`, `ID_ROOM`, `ID_ANSWER`) VALUES ('4', '1', '2');
+INSERT INTO `vote`.`VOTES` (`ID`, `ID_ROOM`, `ID_ANSWER`) VALUES ('5', '2', '2');
+INSERT INTO `vote`.`VOTES` (`ID`, `ID_ROOM`, `ID_ANSWER`) VALUES ('6', '2', '2');
 
 
 -- ******************** Seed test data *******************
