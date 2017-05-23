@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.test.voating.dao.AnswerDAO;
+import com.test.voating.exceptions.VoteBasicException;
 import com.test.voating.exceptions.VoteIllegalStateException;
 import com.test.voating.exceptions.VoteItemCreationException;
 import com.test.voating.exceptions.VoteItemNotFoundException;
@@ -23,7 +24,7 @@ public class AnswerServiceImpl implements AnswerService {
     private QuestionService questionService;
 
     @Override
-    public Answer findById(int id) throws VoteItemNotFoundException {
+    public Answer findById(int id) throws VoteBasicException {
 	Answer answer = answerDao.findOne(id);
 	try {
 	    answer.getId();
@@ -34,7 +35,7 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public Answer addAnswer(Answer answer) throws VoteIllegalStateException, VoteItemCreationException, VoteItemNotFoundException {
+    public Answer addAnswer(Answer answer) throws VoteBasicException {
 	answer.setId(0); // let db generate id
 	if (answer.getName() == null || answer.getName().isEmpty()) {
 	    throw new VoteIllegalStateException("Answer name is empty, can't add");
@@ -56,7 +57,7 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public List<Answer> selectedByQuestionId(int id) throws VoteItemNotFoundException {
+    public List<Answer> selectedByQuestionId(int id) throws VoteBasicException {
 
 	Question qestion = questionService.findById(id);
 	try {

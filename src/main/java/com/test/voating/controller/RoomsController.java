@@ -14,13 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.voating.exceptions.VoteBasicException;
-import com.test.voating.exceptions.VoteIllegalStateException;
-import com.test.voating.exceptions.VoteItemCreationException;
-import com.test.voating.exceptions.VoteItemNotFoundException;
 import com.test.voating.models.dto.CommonDTO;
 import com.test.voating.models.entity.VoteRoom;
 import com.test.voating.service.VoteRoomService;
-import com.test.voating.utils.Config;
 import com.test.voating.utils.URLUtils;
 
 @RestController
@@ -37,13 +33,13 @@ public class RoomsController extends AbstarctController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<VoteRoom> getRoom(@PathVariable int id) throws VoteItemNotFoundException {
+    public ResponseEntity<VoteRoom> getRoom(@PathVariable int id) throws VoteBasicException {
 	VoteRoom room = voteRoomService.findById(id);
 	return getResponse(room);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<VoteRoom> addRoom(@RequestBody VoteRoom room) throws VoteIllegalStateException, VoteItemCreationException, VoteItemNotFoundException {
+    public ResponseEntity<VoteRoom> addRoom(@RequestBody VoteRoom room) throws VoteBasicException {
 	room = voteRoomService.addVoteRoom(room);
 	return getResponse(room, HttpStatus.CREATED);
     }
@@ -62,7 +58,7 @@ public class RoomsController extends AbstarctController {
     @RequestMapping(value = "/{id}/close", method = RequestMethod.GET)
     public ResponseEntity<String> closeRoom(@PathVariable int id) throws VoteBasicException {
 	VoteRoom room = voteRoomService.setStatus(id, false);
-	return getResponse(String.format(Config.getValue("ROOM_CLOSED"), room.toString()));
+	return getResponse("Room closed: " + room.toString());
     }
 
 }

@@ -1,8 +1,5 @@
 package com.test.voating.controller;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -29,14 +26,12 @@ public abstract class AbstarctController {
 
     @ExceptionHandler(VoteBasicException.class)
     protected ResponseEntity<ErrorDataDTO> exceptionHandler(Exception ex) {
+	
 	ErrorDataDTO error = new ErrorDataDTO();
 	error.setErrorCode(HttpStatus.PRECONDITION_FAILED.value());
 	error.setMessage(ex.getMessage());
-	
-	StringWriter sw = new StringWriter();
-	ex.printStackTrace(new PrintWriter(sw));
-	LOG.error(ex.getMessage());
-	LOG.error(sw.toString());
+
+	LOG.error(ex.getMessage(), ex);
 
 	if (ex instanceof VoteItemNotFoundException) {
 	    return new ResponseEntity<ErrorDataDTO>(error, HttpStatus.NOT_FOUND);
@@ -48,7 +43,7 @@ public abstract class AbstarctController {
 	    return new ResponseEntity<ErrorDataDTO>(error, HttpStatus.BAD_REQUEST);
 	}
 
-	return new ResponseEntity<ErrorDataDTO>(error, HttpStatus.OK);
+	return new ResponseEntity<ErrorDataDTO>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.test.voating.exceptions.VoteIllegalStateException;
-import com.test.voating.exceptions.VoteItemCreationException;
-import com.test.voating.exceptions.VoteItemNotFoundException;
+import com.test.voating.exceptions.VoteBasicException;
 import com.test.voating.models.entity.Answer;
 import com.test.voating.service.AnswerService;
 
@@ -31,19 +29,19 @@ public class AnswerController extends AbstarctController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Answer> getAnswer(@PathVariable int id) throws VoteItemNotFoundException {
+    public ResponseEntity<Answer> getAnswer(@PathVariable int id) throws VoteBasicException {
 	Answer answer = aService.findById(id);
 	return getResponse(answer);
     }
 
     @RequestMapping(value = "/questions/{id}", method = RequestMethod.GET)
-    public ResponseEntity<List<Answer>> getAnswersByQuestionId(@PathVariable int id) throws VoteItemNotFoundException {
+    public ResponseEntity<List<Answer>> getAnswersByQuestionId(@PathVariable int id) throws VoteBasicException {
 	List<Answer> answers = aService.selectedByQuestionId(id);
 	return getResponse(answers);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Answer> addAnswer(@RequestBody Answer answerToSave) throws VoteItemCreationException, VoteIllegalStateException, VoteItemNotFoundException {
+    public ResponseEntity<Answer> addAnswer(@RequestBody Answer answerToSave) throws VoteBasicException {
 	Answer answer = aService.addAnswer(answerToSave);
 	return getResponse(answer, HttpStatus.CREATED);
     }

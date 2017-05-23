@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.test.voating.exceptions.VoteItemNotFoundException;
+import com.test.voating.exceptions.VoteBasicException;
 import com.test.voating.models.dto.StatDTO;
 import com.test.voating.service.StatService;
 
@@ -19,7 +19,7 @@ public class StatController extends AbstarctController {
     private StatService sService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<StatDTO> getStats(@PathVariable int id) throws VoteItemNotFoundException {
+    public ResponseEntity<StatDTO> getStats(@PathVariable int id) throws VoteBasicException {
 	StatDTO s = sService.getStats(id);
 	return getResponse(s);
     }

@@ -17,7 +17,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping(value = "/")
-public class HomePageController {
+public class SwaggerApiController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ApiIgnore

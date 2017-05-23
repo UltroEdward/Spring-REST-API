@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.test.voating.exceptions.VoteIllegalStateException;
-import com.test.voating.exceptions.VoteItemNotFoundException;
+import com.test.voating.exceptions.VoteBasicException;
 import com.test.voating.models.entity.Vote;
 import com.test.voating.service.VotingService;
 
@@ -30,27 +29,27 @@ public class VoteController extends AbstarctController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Vote> getVote(@PathVariable int id) throws VoteItemNotFoundException {
+    public ResponseEntity<Vote> getVote(@PathVariable int id) throws VoteBasicException {
 	Vote v = vService.findById(id);
 	return getResponse(v);
     }
 
     @RequestMapping(value = "/rooms/{roomId}/answers/{id}", method = RequestMethod.GET)
-    public ResponseEntity<List<Vote>> getVotesByAnswer(@PathVariable int id, @PathVariable int roomId) throws VoteItemNotFoundException {
+    public ResponseEntity<List<Vote>> getVotesByAnswer(@PathVariable int id, @PathVariable int roomId) throws VoteBasicException {
 	List<Vote> v = vService.findByAnswerAndRoomId(id, roomId);
 	return getResponse(v);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Vote> addVote(Vote vote) throws VoteIllegalStateException, VoteItemNotFoundException {
+    public ResponseEntity<Vote> addVote(Vote vote) throws VoteBasicException {
 	Vote v = vService.makeVote(vote);
 	return getResponse(v);
     }
 
     @RequestMapping(value = "/rooms/{id}", method = RequestMethod.POST)
-    public ResponseEntity<Vote> addVoteByRoom(@PathVariable int id, @RequestBody int answerId ) throws VoteIllegalStateException, VoteItemNotFoundException {
+    public ResponseEntity<Vote> addVoteByRoom(@PathVariable int id, @RequestBody int answerId) throws VoteBasicException {
 	Vote v = vService.addVoteByRoom(id, answerId);
 	return getResponse(v, HttpStatus.CREATED);
     }
-     
+
 }

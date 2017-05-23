@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.test.voating.exceptions.VoteItemNotFoundException;
+import com.test.voating.exceptions.VoteBasicException;
 import com.test.voating.models.dto.StatDTO;
 import com.test.voating.models.dto.StatItemDTO;
 import com.test.voating.models.entity.Answer;
@@ -31,7 +31,7 @@ public class StatServiceImpl implements StatService {
     private VotingService voteService;
 
     @Override
-    public StatDTO getStats(int roomId) throws VoteItemNotFoundException {
+    public StatDTO getStats(int roomId) throws VoteBasicException {
 	StatDTO stat = new StatDTO();
 	VoteRoom room = voteRoomService.findById(roomId);
 	Question quest = questionService.findById(room.getIdQuestion());

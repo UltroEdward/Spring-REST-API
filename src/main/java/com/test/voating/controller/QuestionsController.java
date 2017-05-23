@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.test.voating.exceptions.VoteIllegalStateException;
-import com.test.voating.exceptions.VoteItemCreationException;
-import com.test.voating.exceptions.VoteItemNotFoundException;
+import com.test.voating.exceptions.VoteBasicException;
 import com.test.voating.models.entity.Question;
 import com.test.voating.service.QuestionService;
 
@@ -24,19 +22,19 @@ public class QuestionsController extends AbstarctController {
     private QuestionService qService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<Question>> getQuestions() throws VoteItemNotFoundException {
+    public ResponseEntity<List<Question>> getQuestions() throws VoteBasicException {
 	List<Question> questions = qService.findAll();
 	return getResponse(questions);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Question> getQuestion(@PathVariable int id) throws VoteItemNotFoundException {
+    public ResponseEntity<Question> getQuestion(@PathVariable int id) throws VoteBasicException {
 	Question question = qService.findById(id);
 	return getResponse(question);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Question> addQuestion(Question questionToSave) throws VoteItemCreationException, VoteIllegalStateException {
+    public ResponseEntity<Question> addQuestion(Question questionToSave) throws VoteBasicException {
 	Question question = qService.addQuestion(questionToSave);
 	return getResponse(question, HttpStatus.CREATED);
     }

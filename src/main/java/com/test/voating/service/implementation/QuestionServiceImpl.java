@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.test.voating.dao.QuestionDAO;
+import com.test.voating.exceptions.VoteBasicException;
 import com.test.voating.exceptions.VoteIllegalStateException;
 import com.test.voating.exceptions.VoteItemCreationException;
 import com.test.voating.exceptions.VoteItemNotFoundException;
@@ -18,7 +19,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Autowired
     private QuestionDAO questionDao;
 
-    public Question findById(int id) throws VoteItemNotFoundException {
+    public Question findById(int id) throws VoteBasicException {
 	Question question = questionDao.findOne(id);
 	try {
 	    question.getId();

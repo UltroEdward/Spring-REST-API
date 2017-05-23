@@ -22,7 +22,7 @@ public class VoteRoomServiceImpl implements VoteRoomService {
     @Autowired
     private QuestionService questionService;
 
-    public VoteRoom findById(int id) throws VoteItemNotFoundException {
+    public VoteRoom findById(int id) throws VoteBasicException {
 	VoteRoom voteRoom = voteRoomDao.findOne(id);
 	try {
 	    voteRoom.getId();
@@ -32,7 +32,7 @@ public class VoteRoomServiceImpl implements VoteRoomService {
 	return voteRoom;
     }
 
-    public VoteRoom addVoteRoom(VoteRoom roomToSave) throws VoteIllegalStateException, VoteItemCreationException, VoteItemNotFoundException {
+    public VoteRoom addVoteRoom(VoteRoom roomToSave) throws VoteBasicException {
 	roomToSave.setId(0); // let db generate id
 	roomToSave = validateVoteRoom(roomToSave);
 	roomToSave.setOpened(false); // closed by default
@@ -47,7 +47,7 @@ public class VoteRoomServiceImpl implements VoteRoomService {
 	return room;
     }
 
-    public VoteRoom updateVoteRoom(VoteRoom roomToSave) throws VoteIllegalStateException, VoteItemCreationException, VoteItemNotFoundException {
+    public VoteRoom updateVoteRoom(VoteRoom roomToSave) throws VoteBasicException {
 	VoteRoom existingRoom = voteRoomDao.findOne(roomToSave.getId());
 	if (existingRoom == null) {
 	    throw new VoteIllegalStateException("Room can't be updated, as it not presented");
@@ -76,7 +76,7 @@ public class VoteRoomServiceImpl implements VoteRoomService {
 
     }
 
-    private VoteRoom validateVoteRoom(VoteRoom room) throws VoteIllegalStateException, VoteItemNotFoundException {
+    private VoteRoom validateVoteRoom(VoteRoom room) throws VoteBasicException {
 
 	if (room.getName() == null || room.getName().isEmpty()) {
 	    throw new VoteIllegalStateException("Room name is not presented, can't add");
